@@ -1,0 +1,39 @@
+= Arbeitspakete
+Jonas Birklbauer
+1.0.0, 2021-12-12:
+ifndef::imagesdir[:imagesdir: images]
+//:toc-placement!:  // prevents the generation of the doc at this position, so it can be printed afterwards
+:sourcedir: ../src/main/java
+:icons: font
+:sectnums:    // Nummerierung der Überschriften / section numbering
+:toc: left
+
+//Need this blank line after ifdef, don't know why...
+ifdef::backend-html5[]
+
+== Keycloak Testcontainers
+
+Die beste Variante für die Testumgebung ist die Verwendung einer KeycloakResource. Die KeycloakResource ist ein Testcontainer, welcher eine Keycloak-Instanz startet und eine REST-API für die Authentifizierung und Autorisierung bereitstellt.
+
+Man benützt diese Recourse in andere Tests einfach mit der Annotation ``@QuarkusTestResource(KeycloakResource.class)``. Der Testcontainer verwendet das Standard quarkus-realm-file welches man in den resources-Ordner kopiert.
+
+Man kann dann ganz einfach mit rest-assured, mithilfe der AccessTokenProvider-Klasse bekommt man einen Token, den jeweils gewünschten Endpoint testen.
+
+Beispiel:
+
+[source,java]
+----
+    @Test
+    public void testAdminSuccessfully() {
+        given()
+                .auth().oauth2(getAccessToken("admin", "admin"))
+                .when().get("/admin")
+                .then()
+                .statusCode(200)
+                .body(allOf(
+                        containsString("preferred_username"),
+                        containsString("admin")
+                ));
+    }
+----
+
