@@ -8,6 +8,9 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.containsString;
 
+/**
+ * @author Niko Köbler, https://www.n-k.de, @dasniko
+ */
 @QuarkusTest
 @QuarkusTestResource(KeycloakResource.class)
 public class AdminResourceTest extends AccessTokenProvider {

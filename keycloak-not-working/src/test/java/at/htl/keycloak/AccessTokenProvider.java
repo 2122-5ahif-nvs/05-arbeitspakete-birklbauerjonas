@@ -6,6 +6,9 @@ import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
+/**
+ * @author Niko Köbler, https://www.n-k.de, @dasniko
+ */
 public abstract class AccessTokenProvider {
 
     @ConfigProperty(name = "quarkus.oidc.auth-server-url")

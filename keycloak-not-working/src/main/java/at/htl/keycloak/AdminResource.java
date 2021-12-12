@@ -10,9 +10,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.Map;
 
-/**
- * @author Niko Köbler, https://www.n-k.de, @dasniko
- */
 @Path("admin")
 @Produces(MediaType.APPLICATION_JSON)
 public class AdminResource {
@@ -28,4 +25,5 @@ public class AdminResource {
                 "preferred_username", jwt.getClaim("preferred_username")
         );
     }
+
 }

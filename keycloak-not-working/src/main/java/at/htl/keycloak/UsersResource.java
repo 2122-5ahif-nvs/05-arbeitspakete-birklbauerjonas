@@ -12,9 +12,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.Map;
 
-/**
- * @author Niko Köbler, https://www.n-k.de, @dasniko
- */
 @Path("users")
 @Produces(MediaType.APPLICATION_JSON)
 public class UsersResource {
@@ -38,8 +35,8 @@ public class UsersResource {
     @NoCache
     public Map<String, String> info() {
         return Map.of(
-            "sub", userInfo.getString("sub"),
-            "email", userInfo.getString("email")
+                "sub", userInfo.getString("sub"),
+                "email", userInfo.getString("email")
         );
     }
 }
